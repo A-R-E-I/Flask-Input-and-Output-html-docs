@@ -10,10 +10,11 @@ def main():
     if request.method == "GET":
         return render_template("Input.html")
     else:
-        GetInfo()
+        info()
         return render_template("Output.html")
 
-def GetInfo():
+@app.route("/info",methods=["POST"])
+def info():
     global useremail, userpasswd;
     print("I am in GetInfo");
     useremail = request.form.get("txtuseremail")
@@ -23,15 +24,16 @@ def GetInfo():
     return render_template("Output.html",username=useremail,password=userpasswd)
 
 def FileConnectivity():
+    StoredInfo = "Saveinfo.doc"
     fileDir = os.path.dirname(os.path.realpath("__file__"));
-    fileexist = bool(path.exists(StoredInfo.docx));
+    fileexist = bool(path.exists(StoredInfo));
 
     if(fileexist == True):
-        adminfile = open(StoredInfo.docx,"r");
+        adminfile = open(StoredInfo,"r");
     else:
-        adminfile = open(StoredInfo.docx,"x");
-        adminfile = open(StoredInfo.docx,"a");
-        file.write("Username: " + useremail + "Password: " + userpasswd)
+        adminfile = open(StoredInfo,"x");
+        adminfile = open(StoredInfo,"a");
+        Saveinfo.write("Username: " + useremail + "Password: " + userpasswd)
 
     adminfile.close();
 
