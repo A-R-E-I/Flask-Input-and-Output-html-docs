@@ -32,11 +32,13 @@ def FileConnectivity():
         adminfile = open(StoredInfo,"r");
     else:
         adminfile = open(StoredInfo,"x");
-        adminfile = open(StoredInfo,"w");
-        Saveinfo.write("Username: " + useremail + "Password: " + userpasswd)
+        addinfo()
 
     adminfile.close();
 
+def addinfo():
+    adminfile = open(StoredInfo,"w");
+    adminfile.write("Username: " + useremail + "Password: " + userpasswd)
 
 if __name__=="__main__":
     app.run()
